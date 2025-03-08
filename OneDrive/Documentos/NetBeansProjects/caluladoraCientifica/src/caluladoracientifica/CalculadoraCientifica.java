@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class CalculadoraCientifica extends JFrame{
     //Declarar los componentes
     private JTextField display;
-    private JPanel panelBotones;
+    private final JPanel panelBotones;
     private JButton Btn0,Btn1,Btn2,Btn3,Btn4,Btn5,Btn6,Btn7,Btn8,Btn9,
                     BtnPunto, BtnE, BtnAns,BtnIgual,BtnSuma,BtnResta,
                     BtnMultiplicar,BtnDividir,BtnDel,BtnClear,btnRaiz,
