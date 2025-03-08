@@ -182,6 +182,6 @@ public class CalculadoraCientifica extends JFrame{
             CalculadoraCientifica calc = new CalculadoraCientifica();
             calc.setVisible(true);
         });
-        
+        System.out.println("hola soy daniela");
     }
 }
