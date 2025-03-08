@@ -96,12 +96,12 @@ public class CalculadoraCientifica extends JFrame{
         BtnLeftP = new JButton("(");
         BtnRightP = new JButton(")");
         btnExp = new JButton("^");
-        btnSin = new JButton("sin");
-        BtnCos = new JButton("cos");
-        BtnTan = new JButton("tan");
+        btnSin = new JButton("sin(");
+        BtnCos = new JButton("cos(");
+        BtnTan = new JButton("tan(");
         BtnRaiz3 = new JButton("3√");
-        BtnLog = new JButton("log");
-        BtnLn = new JButton("ln");
+        BtnLog = new JButton("log(");
+        BtnLn = new JButton("ln(");
         BtnFactorial = new JButton("!");
         BtnCeil = new JButton("C");
         BtnFloor = new JButton("F");
@@ -134,8 +134,9 @@ public class CalculadoraCientifica extends JFrame{
             display.setText(String.valueOf(resultado));
             return;
         }
+        //ln
 
-        // Aquí puedes agregar más validaciones para otros cálculos...
+        // otras op
 
         } catch (Exception e) {
         display.setText("Error");
