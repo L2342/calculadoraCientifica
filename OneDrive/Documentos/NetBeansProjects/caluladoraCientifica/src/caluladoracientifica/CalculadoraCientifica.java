@@ -122,6 +122,25 @@ public class CalculadoraCientifica extends JFrame{
     }
     
     private void calcularResultado(){
+        try
+         {
+        String expresion = display.getText();
+
+        // Detectar si es ln(x)
+        if (expresion.startsWith("ln(") && expresion.endsWith(")")) {
+            String numeroStr = expresion.substring(3, expresion.length() - 1); // Extrae el número
+            double numero = Double.parseDouble(numeroStr);
+            double resultado = CalculadoraLogica.calcularLn(numero); // Llama a la otra clase
+            display.setText(String.valueOf(resultado));
+            return;
+        }
+
+        // Aquí puedes agregar más validaciones para otros cálculos...
+
+        } catch (Exception e) {
+        display.setText("Error");
+        }
+        
         JOptionPane.showMessageDialog(null, "Se calculo el resultado");
         // enviar resultado al display
     }
