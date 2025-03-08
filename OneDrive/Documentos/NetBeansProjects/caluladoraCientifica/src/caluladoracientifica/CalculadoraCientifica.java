@@ -11,12 +11,13 @@ public class CalculadoraCientifica extends JFrame{
                     BtnPunto, BtnE, BtnAns,BtnIgual,BtnSuma,BtnResta,
                     BtnMultiplicar,BtnDividir,BtnDel,BtnClear,btnRaiz,
                     BtnPercent,BtnLeftP,BtnRightP,btnExp,btnSin,BtnCos,
-                    BtnTan, BtnRaiz3, BtnLog,BtnLn,BtnFactorial;
+                    BtnTan, BtnRaiz3, BtnLog,BtnLn,BtnFactorial,BtnCeil,
+                    BtnFloor,BtnTrunc;
     
     public CalculadoraCientifica(){
         //configuracion JFrame
         setTitle("Calculadora");
-        setSize(400, 600);
+        setSize(450, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout( new BorderLayout(10,10));
@@ -30,7 +31,7 @@ public class CalculadoraCientifica extends JFrame{
         display.setFont(new Font("Arial", Font.BOLD, 24));
         
         panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(6, 5, 5, 5)); 
+        panelBotones.setLayout(new GridLayout(7, 5, 5, 5)); 
         JButton[] Buttons = inicializarBotones();
         for(JButton Boton : Buttons){
             Boton.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -74,17 +75,25 @@ public class CalculadoraCientifica extends JFrame{
         btnSin = new JButton("sin");
         BtnCos = new JButton("cos");
         BtnTan = new JButton("tan");
-        BtnRaiz3 = new JButton("∛");
+        BtnRaiz3 = new JButton("3√");
         BtnLog = new JButton("log");
         BtnLn = new JButton("ln");
         BtnFactorial = new JButton("!");
+        BtnCeil = new JButton("C");
+        BtnFloor = new JButton("F");
+        BtnTrunc = new JButton("Trunc");
+        
+        
         
         JButton [] botones = new JButton[] {
-        Btn0, Btn1, Btn2, Btn3, Btn4, Btn5, Btn6, Btn7, Btn8, Btn9,
-        BtnPunto, BtnE, BtnAns, BtnIgual, BtnSuma, BtnResta,
-        BtnMultiplicar, BtnDividir, BtnDel, BtnClear, btnRaiz,
-        BtnPercent, BtnLeftP, BtnRightP, btnExp, btnSin, BtnCos,
-        BtnTan, BtnRaiz3, BtnLog, BtnLn, BtnFactorial
+            BtnLn, BtnFactorial, BtnCeil,BtnFloor,BtnTrunc, 
+           btnSin, BtnCos, BtnTan, BtnRaiz3, BtnLog,
+            btnRaiz, BtnPercent, BtnLeftP, BtnRightP, btnExp,
+            Btn7, Btn8, Btn9, BtnDel, BtnClear,
+            Btn4, Btn5, Btn6, BtnMultiplicar, BtnDividir,
+            Btn1, Btn2, Btn3, BtnSuma, BtnResta,
+            Btn0, BtnPunto, BtnE, BtnAns, BtnIgual,
+            
         };
         
         return botones;
