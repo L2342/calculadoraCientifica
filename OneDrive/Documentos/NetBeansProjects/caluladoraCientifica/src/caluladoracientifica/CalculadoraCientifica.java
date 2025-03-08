@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 public class CalculadoraCientifica extends JFrame{
     //Declarar los componentes
     private JTextField display;
@@ -35,16 +36,39 @@ public class CalculadoraCientifica extends JFrame{
         JButton[] Buttons = inicializarBotones();
         for(JButton Boton : Buttons){
             Boton.setFont(new Font("Arial", Font.PLAIN, 18));
+            Boton.addActionListener(new OperacionListener());
             panelBotones.add(Boton);
         }
-        
-        
-        
+       
         //añadir componentes
         add(display,BorderLayout.NORTH);
         add(panelBotones,BorderLayout.CENTER);
         
+        // Acción de los botones especiales
+        BtnIgual.addActionListener(e -> calcularResultado());
+        BtnClear.addActionListener(e -> display.setText(""));
+        BtnDel.addActionListener(e -> {
+            String textoActual = display.getText();
+            if (!textoActual.isEmpty()) {
+                display.setText(textoActual.substring(0, textoActual.length() - 1));
+            }
+        });
+
     }
+    // Clase interna para manejar los eventos de los botones
+    private class OperacionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton source = (JButton) e.getSource();
+            String texto = source.getText();
+            // Validar que no se agreguen botones especiales al display
+            String[] botonesEspeciales = {"=", "C", "DEL", "AC", "Ans","Trunc", "F"};
+            if (! Arrays.asList(botonesEspeciales).contains(texto)) {
+            display.setText(display.getText() + texto);
+            }
+        }
+    }
+    
     // Metodo para crear los botones
     private JButton[] inicializarBotones(){
         Btn0 = new JButton("0");
@@ -66,7 +90,7 @@ public class CalculadoraCientifica extends JFrame{
         BtnMultiplicar = new JButton("*");
         BtnDividir = new JButton("/");
         BtnDel = new JButton("DEL");
-        BtnClear = new JButton("C");
+        BtnClear = new JButton("AC");
         btnRaiz = new JButton("√");
         BtnPercent = new JButton("%");
         BtnLeftP = new JButton("(");
@@ -83,8 +107,6 @@ public class CalculadoraCientifica extends JFrame{
         BtnFloor = new JButton("F");
         BtnTrunc = new JButton("Trunc");
         
-        
-        
         JButton [] botones = new JButton[] {
             BtnLn, BtnFactorial, BtnCeil,BtnFloor,BtnTrunc, 
            btnSin, BtnCos, BtnTan, BtnRaiz3, BtnLog,
@@ -98,6 +120,12 @@ public class CalculadoraCientifica extends JFrame{
         
         return botones;
     }
+    
+    private void calcularResultado(){
+        JOptionPane.showMessageDialog(null, "Se calculo el resultado");
+        // enviar resultado al display
+    }
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(()->{
             CalculadoraCientifica calc = new CalculadoraCientifica();
