@@ -62,6 +62,12 @@ public class CalculadoraLogica {
 
             return r;
         }
+        
+        public static double calcularNotacionC (double base, int exponente){
+            
+            double x = base * Math.pow(10, exponente);
+            return x;
+        }
         public static double calcularCuboR(double x){
             return Math.cbrt(x);
         }

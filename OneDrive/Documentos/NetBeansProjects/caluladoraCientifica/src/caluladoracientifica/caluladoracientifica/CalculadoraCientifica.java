@@ -177,7 +177,16 @@ public class CalculadoraCientifica extends JFrame{
             display.setText(String.valueOf(resultado));            
         }
         //!
-        // otras op
+        //E
+        else if (expresion.contains("E")){
+             String numeroStrb = expresion.substring(0,expresion.indexOf("E"));
+             String numeroStre = expresion.substring(expresion.indexOf("E")+1);
+             double numerob = Double.parseDouble(numeroStrb);
+             int numeroe = Integer.parseInt(numeroStre);
+             double resultado = CalculadoraLogica.calcularNotacionC(numerob, numeroe);
+             display.setText(String.valueOf(resultado));
+         }
+        //E
         //suma
         else if (expresion.contains("+")) {
             String[] numeros = expresion.split("\\+"); 
