@@ -168,6 +168,54 @@ public class CalculadoraCientifica extends JFrame{
         }
         //tan
         // otras op
+        //suma
+        else if (expresion.contains("+")) {
+            String[] numeros = expresion.split("\\+"); 
+            if (numeros.length == 2) {
+                double num1 = Double.parseDouble(numeros[0].trim());
+                double num2 = Double.parseDouble(numeros[1].trim());
+                double resultado = CalculadoraLogica.sumar(num1, num2); 
+                display.setText(String.valueOf(resultado));
+                return;
+            }
+        }
+        //suma
+        //resta
+        else if (expresion.contains("-")) {
+            String[] numeros = expresion.split("-"); 
+            if (numeros.length == 2) {
+                double num1 = Double.parseDouble(numeros[0].trim());
+                double num2 = Double.parseDouble(numeros[1].trim());
+                double resultado = CalculadoraLogica.restar(num1, num2); 
+                display.setText(String.valueOf(resultado));
+                return;
+            }
+        }
+        //resta
+        //division
+        else if (expresion.contains("/")) {
+            String[] numeros = expresion.split("/"); 
+            if (numeros.length == 2) {
+                double num1 = Double.parseDouble(numeros[0].trim());
+                double num2 = Double.parseDouble(numeros[1].trim());
+                double resultado = CalculadoraLogica.dividir(num1, num2); 
+                display.setText(String.valueOf(resultado));
+                return;
+            }
+        }
+        //division
+        //multiplicar
+        else if (expresion.contains("*")) {
+            String[] numeros = expresion.split("\\*"); 
+            if (numeros.length == 2) {
+                double num1 = Double.parseDouble(numeros[0].trim());
+                double num2 = Double.parseDouble(numeros[1].trim());
+                double resultado = CalculadoraLogica.multiplicar(num1, num2); 
+                display.setText(String.valueOf(resultado));
+                return;
+            }
+        }
+        //multiplicar
         
 
         } catch (Exception e) {

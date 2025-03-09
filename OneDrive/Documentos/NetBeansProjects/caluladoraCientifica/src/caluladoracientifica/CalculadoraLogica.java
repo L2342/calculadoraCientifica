@@ -3,7 +3,18 @@ package caluladoracientifica;
 public class CalculadoraLogica {
 
         // TODO code application logic here
-        
+        public static double sumar(double a,double b){
+            return a+b;
+        }
+        public static double restar(double a, double b){
+            return a-b;
+        }
+        public static double dividir(double a, double b){
+            return a/b;
+        }
+        public static double multiplicar(double a, double b){
+            return a*b;
+        }
         public static double calcularLn(double x) {
             
             return Math.log(x); //ln base e
