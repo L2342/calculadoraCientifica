@@ -168,6 +168,7 @@ public class CalculadoraCientifica extends JFrame{
         }
         //tan
         // otras op
+        
 
         } catch (Exception e) {
         display.setText("Error");
