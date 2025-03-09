@@ -135,6 +135,17 @@ public class CalculadoraCientifica extends JFrame{
             return;
         }
         //ln
+        
+        //detecta si es sin(x)
+        else if (expresion.startsWith("sin(") && expresion.endsWith(")")){
+            String numeroStr = expresion.substring(4,expresion.length()-1);
+            double numero = Double.parseDouble(numeroStr);
+            double resultado = CalculadoraLogica.calcularSin(numero);
+            display.setText(String.valueOf(resultado));            
+        }
+        //sin
+        
+        
 
         // otras op
 
