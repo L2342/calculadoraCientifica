@@ -152,7 +152,14 @@ public class CalculadoraCientifica extends JFrame{
             display.setText(String.valueOf(resultado));            
         }
         //cos
-
+        
+        else if (expresion.startsWith("tan(") && expresion.endsWith(")")){
+            String numeroStr = expresion.substring(4,expresion.length()-1);
+            double numero = Double.parseDouble(numeroStr);
+            double resultado = CalculadoraLogica.calcularTan(numero);
+            display.setText(String.valueOf(resultado));            
+        }
+        
         // otras op
 
         } catch (Exception e) {
