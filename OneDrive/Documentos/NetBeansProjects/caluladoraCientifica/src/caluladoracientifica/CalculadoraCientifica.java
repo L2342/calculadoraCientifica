@@ -216,7 +216,14 @@ public class CalculadoraCientifica extends JFrame{
             }
         }
         //multiplicar
-        
+        //raiz
+        else if (expresion.startsWith("√(") && expresion.endsWith(")")){
+            String numeroStr = expresion.substring(2,expresion.length()-1);
+            double numero = Double.parseDouble(numeroStr);
+            double resultado = CalculadoraLogica.raiz(numero);
+            display.setText(String.valueOf(resultado));            
+        }
+        //raiz
 
         } catch (Exception e) {
         display.setText("Error");

@@ -15,6 +15,9 @@ public class CalculadoraLogica {
         public static double multiplicar(double a, double b){
             return a*b;
         }
+        public static double raiz(double x){
+            return Math.sqrt(x);
+        }
         public static double calcularLn(double x) {
             
             return Math.log(x); //ln base e
