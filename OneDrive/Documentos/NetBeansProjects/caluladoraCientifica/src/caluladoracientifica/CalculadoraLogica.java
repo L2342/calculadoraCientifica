@@ -13,4 +13,9 @@ public class CalculadoraLogica {
             
             return Math.sin(x); // seno solo en radianes
         }
+        
+        public static double calcularCos(double x) {
+            
+            return Math.cos(x); // coseno solo en radianes
+        }
 }
