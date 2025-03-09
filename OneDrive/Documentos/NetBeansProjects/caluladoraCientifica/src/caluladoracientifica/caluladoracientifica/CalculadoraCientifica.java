@@ -14,7 +14,7 @@ public class CalculadoraCientifica extends JFrame{
                     BtnMultiplicar,BtnDividir,BtnDel,BtnClear,btnRaiz,
                     BtnPercent,BtnLeftP,BtnRightP,btnExp,btnSin,BtnCos,
                     BtnTan, BtnRaiz3, BtnLog,BtnLn,BtnFactorial,BtnCeil,
-                    BtnFloor,BtnTrunc;
+                    BtnFloor,BtnDeg, BtnRad, BtnMod;
     private double resultado = 0.0; //variable para ans
     
     public CalculadoraCientifica(){
@@ -34,7 +34,7 @@ public class CalculadoraCientifica extends JFrame{
         display.setFont(new Font("Arial", Font.BOLD, 24));
         
         panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(7, 5, 5, 5)); 
+        panelBotones.setLayout(new GridLayout(8, 4, 5, 5)); 
         JButton[] Buttons = inicializarBotones();
         for(JButton Boton : Buttons){
             Boton.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -62,7 +62,7 @@ public class CalculadoraCientifica extends JFrame{
             JButton source = (JButton) e.getSource();
             String texto = source.getText();
             // Validar que no se agreguen botones especiales al display
-            String[] botonesEspeciales = {"=", "C", "DEL", "AC", "Ans","Trunc", "F"};
+            String[] botonesEspeciales = {"=", "DEL", "AC", "Ans"};
             if (! Arrays.asList(botonesEspeciales).contains(texto)) {
             display.setText(display.getText() + texto);
             }
@@ -103,18 +103,20 @@ public class CalculadoraCientifica extends JFrame{
         BtnLog = new JButton("log(");
         BtnLn = new JButton("ln(");
         BtnFactorial = new JButton("!");
-        BtnCeil = new JButton("C");
-        BtnFloor = new JButton("F");
-        BtnTrunc = new JButton("Trunc");
+        BtnCeil = new JButton("Ceil(");
+        BtnFloor = new JButton("Floor(");
+        BtnDeg = new JButton("Deg(");
+        BtnRad = new JButton("Rad(");
+        BtnMod = new JButton("mod");
         
         JButton [] botones = new JButton[] {
-            BtnLn, BtnFactorial, BtnCeil,BtnFloor,BtnTrunc, 
-           btnSin, BtnCos, BtnTan, BtnRaiz3, BtnLog,
-            btnRaiz, BtnPercent, BtnLeftP, BtnRightP, btnExp,
+            BtnLn, BtnFactorial, BtnCeil,BtnFloor,BtnDeg,
+            BtnRad,btnSin, BtnCos, BtnTan, BtnRaiz3, 
+            BtnLog,btnRaiz, BtnPercent, BtnLeftP, BtnRightP,
             Btn7, Btn8, Btn9, BtnDel, BtnClear,
             Btn4, Btn5, Btn6, BtnMultiplicar, BtnDividir,
             Btn1, Btn2, Btn3, BtnSuma, BtnResta,
-            Btn0, BtnPunto, BtnE, BtnAns, BtnIgual,
+            Btn0, BtnPunto, BtnE, BtnAns, BtnIgual,btnExp,BtnMod
             
         };
         
@@ -126,58 +128,49 @@ public class CalculadoraCientifica extends JFrame{
         try
          {
             String expresion = display.getText();
-
-            // Detectar si es ln(x)
+            //1.  ln(x)
             if (expresion.startsWith("ln(") && expresion.endsWith(")")) {
                 String numeroStr = expresion.substring(3, expresion.length() - 1); // Extrae el número
                 double numero = Double.parseDouble(numeroStr);
                 resultado = CalculadoraLogica.calcularLn(numero); // Llama a la otra clase
                 display.setText(String.valueOf(resultado));
             }
-            //ln
-            //log
+            //2.log
             else if (expresion.startsWith("log(") && expresion.endsWith(")")){
                 String numeroStr = expresion.substring(4,expresion.length()-1);
                 double numero = Double.parseDouble(numeroStr);
                 resultado = CalculadoraLogica.calcularLog(numero);
                 display.setText(String.valueOf(resultado));            
             }
-            //log
-            //detecta si es sin(x)
+            //3. sin(x)
             else if (expresion.startsWith("sin(") && expresion.endsWith(")")){
                 String numeroStr = expresion.substring(4,expresion.length()-1);
                 double numero = Double.parseDouble(numeroStr);
                 resultado = CalculadoraLogica.calcularSin(numero);
                 display.setText(String.valueOf(resultado));            
             }
-            //seno
-
-            //cos
+            //4.cos
             else if (expresion.startsWith("cos(") && expresion.endsWith(")")){
                 String numeroStr = expresion.substring(4,expresion.length()-1);
                 double numero = Double.parseDouble(numeroStr);
                 resultado = CalculadoraLogica.calcularCos(numero);
                 display.setText(String.valueOf(resultado));            
             }
-            //cos
-            //tan
+            //5.tan
             else if (expresion.startsWith("tan(") && expresion.endsWith(")")){
                 String numeroStr = expresion.substring(4,expresion.length()-1);
                 double numero = Double.parseDouble(numeroStr);
                 resultado = CalculadoraLogica.calcularTan(numero);
                 display.setText(String.valueOf(resultado));            
             }
-            //tan
-
-            //!
+            //6. ! (Factorial)
              else if (expresion.endsWith("!")){
                 String numeroStr = expresion.substring(0,expresion.length()-1);
                 int numero = Integer.parseInt(numeroStr);
                 resultado = CalculadoraLogica.calcularFac(numero);
                 display.setText(String.valueOf(resultado));            
             }
-            //!
-            //E
+            //7. E (Exponente)
             else if (expresion.contains("E")){
                  String numeroStrb = expresion.substring(0,expresion.indexOf("E"));
                  String numeroStre = expresion.substring(expresion.indexOf("E")+1);
@@ -186,8 +179,7 @@ public class CalculadoraCientifica extends JFrame{
                  resultado = CalculadoraLogica.calcularNotacionC(numerob, numeroe);
                  display.setText(String.valueOf(resultado));
              }
-            //E
-            //suma
+            //8. suma
             else if (expresion.contains("+")) {
                 String[] numeros = expresion.split("\\+"); 
                 if (numeros.length == 2) {
@@ -197,8 +189,7 @@ public class CalculadoraCientifica extends JFrame{
                     display.setText(String.valueOf(resultado));
                 }
             }
-            //suma
-            //resta
+            //9. resta
             else if (expresion.contains("-")) {
                 String[] numeros = expresion.split("-"); 
                 if (numeros.length == 2) {
@@ -208,8 +199,7 @@ public class CalculadoraCientifica extends JFrame{
                     display.setText(String.valueOf(resultado));
                 }
             }
-            //resta
-            //division
+            // 10. division
             else if (expresion.contains("/")) {
                 String[] numeros = expresion.split("/"); 
                 if (numeros.length == 2) {
@@ -219,8 +209,7 @@ public class CalculadoraCientifica extends JFrame{
                     display.setText(String.valueOf(resultado));
                 }
             }
-            //division
-            //multiplicar
+            //11 .multiplicar
             else if (expresion.contains("*")) {
                 String[] numeros = expresion.split("\\*"); 
                 if (numeros.length == 2) {
@@ -230,25 +219,22 @@ public class CalculadoraCientifica extends JFrame{
                     display.setText(String.valueOf(resultado));
                 }
             }
-            //multiplicar
-            //raiz
+            //12. raiz
             else if (expresion.startsWith("√")){
                 String numeroStr = expresion.substring(1);
                 double numero = Double.parseDouble(numeroStr);
                 resultado = CalculadoraLogica.raiz(numero);
                 display.setText(String.valueOf(resultado));            
             }
-            //raiz
-            //porcentaje
+            // 13. Porcentaje %
             else if (expresion.endsWith("%")){
                  String numeroStr = expresion.substring(0,expresion.length()-1);
                  double numero = Double.parseDouble(numeroStr);
                  resultado = CalculadoraLogica.porcentaje(numero);
                  display.setText(String.valueOf(resultado ));
              }
-            //porcentaje
 
-            //potencia
+            //14. potencia
             else if (expresion.contains("^")){
                 String[] partes = expresion.split("\\^");
                 double base = Double.parseDouble(partes[0]);
@@ -256,22 +242,55 @@ public class CalculadoraCientifica extends JFrame{
                 resultado = CalculadoraLogica.potencia(base, exponente);
                 display.setText(String.valueOf(resultado));   
             }
-            //potencia
-            //raiz3
+            //15.raiz3
             else if (expresion.startsWith("\u00B3")){
                  String numeroStr = expresion.substring(2,expresion.length());
                  double numero = Double.parseDouble(numeroStr);
                  resultado = CalculadoraLogica.calcularCuboR(numero);
-                 display.setText(String.valueOf(resultado));
-             }
-            //raiz3            
-            
+                 display.setText(String.valueOf(resultado)); 
+            }
+            //16. Ceil(x)
+            else if (expresion.startsWith("Ceil(") && expresion.endsWith(")")) {
+                String numeroStr = expresion.substring(5, expresion.length() - 1);
+                double numero = Double.parseDouble(numeroStr);
+                resultado = CalculadoraLogica.calcularCeil(numero);
+                display.setText(String.valueOf(resultado));
+            }
+            // 17.Floor(x)
+            else if (expresion.startsWith("Floor(") && expresion.endsWith(")")) {
+                String numeroStr = expresion.substring(6, expresion.length() - 1);
+                double numero = Double.parseDouble(numeroStr);
+                resultado = CalculadoraLogica.calcularFloor(numero);
+                display.setText(String.valueOf(resultado));
+            }
+            // 18. Radianes a Grados
+            else if (expresion.startsWith("Deg(") && expresion.endsWith(")")) {
+            String numeroStr = expresion.substring(4, expresion.length() - 1);
+            double radianes = Double.parseDouble(numeroStr);
+            resultado = CalculadoraLogica.radianesAGrados(radianes);
+            display.setText(String.valueOf(resultado));
+            }
+            // 19 Convertir grados a radianes
+            else if (expresion.startsWith("Rad(") && expresion.endsWith(")")) {
+                String numeroStr = expresion.substring(4, expresion.length() - 1);
+                double grados = Double.parseDouble(numeroStr);
+                resultado = CalculadoraLogica.gradosARadianes(grados);
+                display.setText(String.valueOf(resultado));
+            }
+            // 20. Modulo
+            else if (expresion.contains("mod")) {
+                String[] numeros = expresion.split("mod"); 
+                if (numeros.length == 2) {
+                    double num1 = Double.parseDouble(numeros[0].trim());
+                    double num2 = Double.parseDouble(numeros[1].trim());
+                    resultado = CalculadoraLogica.modulo(num1,num2);
+                    display.setText(String.valueOf(resultado));
+                }
+            }
+
         } catch (Exception e) {
-        display.setText("Error");
+                display.setText("Error");
         }
-        JOptionPane.showMessageDialog(null, "Se calculo el resultado");
-        // enviar resultado al display  
-        
         BtnAns.addActionListener(e -> display.setText(display.getText() + resultado)); //hace que funcione ans
     }
    
@@ -281,6 +300,5 @@ public class CalculadoraCientifica extends JFrame{
             CalculadoraCientifica calc = new CalculadoraCientifica();
             calc.setVisible(true);
         });
-        System.out.println("solo daniela");
     }
 }
