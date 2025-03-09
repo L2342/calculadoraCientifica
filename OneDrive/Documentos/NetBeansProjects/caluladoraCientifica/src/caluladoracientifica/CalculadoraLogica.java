@@ -8,6 +8,10 @@ public class CalculadoraLogica {
             
             return Math.log(x); //ln base e
         }
+        public static double calcularLog(double x) {
+            
+            return Math.log10(x); // log base 10
+        }
         
         public static double calcularSin(double x) {
             

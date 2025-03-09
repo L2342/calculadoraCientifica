@@ -134,7 +134,14 @@ public class CalculadoraCientifica extends JFrame{
             display.setText(String.valueOf(resultado));
         }
         //ln
-        
+        //log
+        else if (expresion.startsWith("log(") && expresion.endsWith(")")){
+            String numeroStr = expresion.substring(4,expresion.length()-1);
+            double numero = Double.parseDouble(numeroStr);
+            double resultado = CalculadoraLogica.calcularLog(numero);
+            display.setText(String.valueOf(resultado));            
+        }
+        //log
         //detecta si es sin(x)
         else if (expresion.startsWith("sin(") && expresion.endsWith(")")){
             String numeroStr = expresion.substring(4,expresion.length()-1);
