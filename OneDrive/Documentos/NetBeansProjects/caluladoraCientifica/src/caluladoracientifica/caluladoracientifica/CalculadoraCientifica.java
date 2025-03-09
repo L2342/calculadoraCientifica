@@ -195,7 +195,6 @@ public class CalculadoraCientifica extends JFrame{
                     double num2 = Double.parseDouble(numeros[1].trim());
                     resultado = CalculadoraLogica.sumar(num1, num2); 
                     display.setText(String.valueOf(resultado));
-                    return;
                 }
             }
             //suma
@@ -207,7 +206,6 @@ public class CalculadoraCientifica extends JFrame{
                     double num2 = Double.parseDouble(numeros[1].trim());
                     resultado = CalculadoraLogica.restar(num1, num2); 
                     display.setText(String.valueOf(resultado));
-                    return;
                 }
             }
             //resta
@@ -219,7 +217,6 @@ public class CalculadoraCientifica extends JFrame{
                     double num2 = Double.parseDouble(numeros[1].trim());
                     resultado = CalculadoraLogica.dividir(num1, num2); 
                     display.setText(String.valueOf(resultado));
-                    return;
                 }
             }
             //division
@@ -231,7 +228,6 @@ public class CalculadoraCientifica extends JFrame{
                     double num2 = Double.parseDouble(numeros[1].trim());
                     resultado = CalculadoraLogica.multiplicar(num1, num2); 
                     display.setText(String.valueOf(resultado));
-                    return;
                 }
             }
             //multiplicar
