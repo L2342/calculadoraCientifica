@@ -18,6 +18,9 @@ public class CalculadoraLogica {
         public static double raiz(double x){
             return Math.sqrt(x);
         }
+        public static double porcentaje(double x){
+            return x/100;
+        }
         public static double calcularLn(double x) {
             
             return Math.log(x); //ln base e

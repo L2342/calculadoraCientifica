@@ -217,13 +217,21 @@ public class CalculadoraCientifica extends JFrame{
         }
         //multiplicar
         //raiz
-        else if (expresion.startsWith("√(") && expresion.endsWith(")")){
-            String numeroStr = expresion.substring(2,expresion.length()-1);
+        else if (expresion.startsWith("√")){
+            String numeroStr = expresion.substring(1);
             double numero = Double.parseDouble(numeroStr);
             double resultado = CalculadoraLogica.raiz(numero);
             display.setText(String.valueOf(resultado));            
         }
         //raiz
+        //porcentaje
+        else if (expresion.endsWith("%")){
+             String numeroStr = expresion.substring(0,expresion.length()-1);
+             double numero = Double.parseDouble(numeroStr);
+             double resultado = CalculadoraLogica.porcentaje(numero);
+             display.setText(String.valueOf(resultado ));
+         }
+        //porcentaje
 
         } catch (Exception e) {
         display.setText("Error");
