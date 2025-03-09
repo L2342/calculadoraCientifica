@@ -132,7 +132,6 @@ public class CalculadoraCientifica extends JFrame{
             double numero = Double.parseDouble(numeroStr);
             double resultado = CalculadoraLogica.calcularLn(numero); // Llama a la otra clase
             display.setText(String.valueOf(resultado));
-            return;
         }
         //ln
         
@@ -145,7 +144,14 @@ public class CalculadoraCientifica extends JFrame{
         }
         //seno
         
-        
+        //cos
+        else if (expresion.startsWith("cos(") && expresion.endsWith(")")){
+            String numeroStr = expresion.substring(4,expresion.length()-1);
+            double numero = Double.parseDouble(numeroStr);
+            double resultado = CalculadoraLogica.calcularCos(numero);
+            display.setText(String.valueOf(resultado));            
+        }
+        //cos
 
         // otras op
 
