@@ -57,4 +57,7 @@ public class CalculadoraLogica {
 
             return r;
         }
+        public static double calcularCuboR(double x){
+            return Math.cbrt(x);
+        }
 }

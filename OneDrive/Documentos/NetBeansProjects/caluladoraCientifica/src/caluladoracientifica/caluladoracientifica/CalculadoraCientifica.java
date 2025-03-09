@@ -100,7 +100,7 @@ public class CalculadoraCientifica extends JFrame{
         btnSin = new JButton("sin(");
         BtnCos = new JButton("cos(");
         BtnTan = new JButton("tan(");
-        BtnRaiz3 = new JButton("3√");
+        BtnRaiz3 = new JButton("\u00B3√");
         BtnLog = new JButton("log(");
         BtnLn = new JButton("ln(");
         BtnFactorial = new JButton("!");
@@ -242,7 +242,14 @@ public class CalculadoraCientifica extends JFrame{
              display.setText(String.valueOf(resultado ));
          }
         //porcentaje
-
+        //raiz3
+        else if (expresion.startsWith("\u00B3")){
+             String numeroStr = expresion.substring(2,expresion.length());
+             double numero = Double.parseDouble(numeroStr);
+             double resultado = CalculadoraLogica.calcularCuboR(numero);
+             display.setText(String.valueOf(resultado));
+         }
+        //raiz3
         } catch (Exception e) {
         display.setText("Error");
         }
