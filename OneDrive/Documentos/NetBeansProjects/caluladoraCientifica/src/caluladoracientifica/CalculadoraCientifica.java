@@ -167,6 +167,15 @@ public class CalculadoraCientifica extends JFrame{
             display.setText(String.valueOf(resultado));            
         }
         //tan
+        
+        //!
+         else if (expresion.endsWith("!")){
+            String numeroStr = expresion.substring(0,expresion.length()-1);
+            int numero = Integer.parseInt(numeroStr);
+            int resultado = CalculadoraLogica.calcularFac(numero);
+            display.setText(String.valueOf(resultado));            
+        }
+        //!
         // otras op
         //suma
         else if (expresion.contains("+")) {
