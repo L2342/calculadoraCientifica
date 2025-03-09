@@ -71,4 +71,19 @@ public class CalculadoraLogica {
         public static double calcularCuboR(double x){
             return Math.cbrt(x);
         }
+        public static double calcularCeil(double x){
+            return Math.ceil(x);
+        }
+        public static double calcularFloor(double x){
+            return Math.floor(x);
+        }
+        public static double radianesAGrados(double angle){
+            return Math.toDegrees(angle);
+        }
+        public static double gradosARadianes(double grade){
+            return Math.toRadians(grade);
+        }
+        public static double modulo(double a , double b){
+             return a%b;
+        }
 }
