@@ -44,6 +44,11 @@ public class CalculadoraLogica {
             
             return Math.tan(x); // tangente solo en radianes
         }
+        
+        public static double potencia(double base, double exponente) {
+            return Math.pow(base, exponente);
+        }
+        
         public static int calcularFac(int x) {
            int r = 0;
             

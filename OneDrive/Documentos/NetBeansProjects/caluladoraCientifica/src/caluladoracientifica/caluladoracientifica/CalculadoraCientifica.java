@@ -242,6 +242,16 @@ public class CalculadoraCientifica extends JFrame{
              display.setText(String.valueOf(resultado ));
          }
         //porcentaje
+        
+        //potencia
+        else if (expresion.contains("^")){
+            String[] partes = expresion.split("\\^");
+            double base = Double.parseDouble(partes[0]);
+            double exponente = Double.parseDouble(partes[1]);
+            double resultado = CalculadoraLogica.potencia(base, exponente);
+            display.setText(String.valueOf(resultado));   
+        }
+        //potencia
         //raiz3
         else if (expresion.startsWith("\u00B3")){
              String numeroStr = expresion.substring(2,expresion.length());
