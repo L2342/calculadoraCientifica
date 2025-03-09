@@ -15,6 +15,7 @@ public class CalculadoraCientifica extends JFrame{
                     BtnPercent,BtnLeftP,BtnRightP,btnExp,btnSin,BtnCos,
                     BtnTan, BtnRaiz3, BtnLog,BtnLn,BtnFactorial,BtnCeil,
                     BtnFloor,BtnTrunc;
+    private double resultado = 0.0; //variable para ans
     
     public CalculadoraCientifica(){
         //configuracion JFrame
@@ -40,7 +41,6 @@ public class CalculadoraCientifica extends JFrame{
             Boton.addActionListener(new OperacionListener());
             panelBotones.add(Boton);
         }
-       
         //añadir componentes
         add(display,BorderLayout.NORTH);
         add(panelBotones,BorderLayout.CENTER);
@@ -54,7 +54,6 @@ public class CalculadoraCientifica extends JFrame{
                 display.setText(textoActual.substring(0, textoActual.length() - 1));
             }
         });
-
     }
     // Clase interna para manejar los eventos de los botones
     private class OperacionListener implements ActionListener {
@@ -123,159 +122,163 @@ public class CalculadoraCientifica extends JFrame{
     }
     
     private void calcularResultado(){
+        
         try
          {
-        String expresion = display.getText();
+            String expresion = display.getText();
 
-        // Detectar si es ln(x)
-        if (expresion.startsWith("ln(") && expresion.endsWith(")")) {
-            String numeroStr = expresion.substring(3, expresion.length() - 1); // Extrae el número
-            double numero = Double.parseDouble(numeroStr);
-            double resultado = CalculadoraLogica.calcularLn(numero); // Llama a la otra clase
-            display.setText(String.valueOf(resultado));
-        }
-        //ln
-        //log
-        else if (expresion.startsWith("log(") && expresion.endsWith(")")){
-            String numeroStr = expresion.substring(4,expresion.length()-1);
-            double numero = Double.parseDouble(numeroStr);
-            double resultado = CalculadoraLogica.calcularLog(numero);
-            display.setText(String.valueOf(resultado));            
-        }
-        //log
-        //detecta si es sin(x)
-        else if (expresion.startsWith("sin(") && expresion.endsWith(")")){
-            String numeroStr = expresion.substring(4,expresion.length()-1);
-            double numero = Double.parseDouble(numeroStr);
-            double resultado = CalculadoraLogica.calcularSin(numero);
-            display.setText(String.valueOf(resultado));            
-        }
-        //seno
-        
-        //cos
-        else if (expresion.startsWith("cos(") && expresion.endsWith(")")){
-            String numeroStr = expresion.substring(4,expresion.length()-1);
-            double numero = Double.parseDouble(numeroStr);
-            double resultado = CalculadoraLogica.calcularCos(numero);
-            display.setText(String.valueOf(resultado));            
-        }
-        //cos
-        //tan
-        else if (expresion.startsWith("tan(") && expresion.endsWith(")")){
-            String numeroStr = expresion.substring(4,expresion.length()-1);
-            double numero = Double.parseDouble(numeroStr);
-            double resultado = CalculadoraLogica.calcularTan(numero);
-            display.setText(String.valueOf(resultado));            
-        }
-        //tan
-        
-        //!
-         else if (expresion.endsWith("!")){
-            String numeroStr = expresion.substring(0,expresion.length()-1);
-            int numero = Integer.parseInt(numeroStr);
-            int resultado = CalculadoraLogica.calcularFac(numero);
-            display.setText(String.valueOf(resultado));            
-        }
-        //!
-        //E
-        else if (expresion.contains("E")){
-             String numeroStrb = expresion.substring(0,expresion.indexOf("E"));
-             String numeroStre = expresion.substring(expresion.indexOf("E")+1);
-             double numerob = Double.parseDouble(numeroStrb);
-             int numeroe = Integer.parseInt(numeroStre);
-             double resultado = CalculadoraLogica.calcularNotacionC(numerob, numeroe);
-             display.setText(String.valueOf(resultado));
-         }
-        //E
-        //suma
-        else if (expresion.contains("+")) {
-            String[] numeros = expresion.split("\\+"); 
-            if (numeros.length == 2) {
-                double num1 = Double.parseDouble(numeros[0].trim());
-                double num2 = Double.parseDouble(numeros[1].trim());
-                double resultado = CalculadoraLogica.sumar(num1, num2); 
+            // Detectar si es ln(x)
+            if (expresion.startsWith("ln(") && expresion.endsWith(")")) {
+                String numeroStr = expresion.substring(3, expresion.length() - 1); // Extrae el número
+                double numero = Double.parseDouble(numeroStr);
+                resultado = CalculadoraLogica.calcularLn(numero); // Llama a la otra clase
                 display.setText(String.valueOf(resultado));
-                return;
             }
-        }
-        //suma
-        //resta
-        else if (expresion.contains("-")) {
-            String[] numeros = expresion.split("-"); 
-            if (numeros.length == 2) {
-                double num1 = Double.parseDouble(numeros[0].trim());
-                double num2 = Double.parseDouble(numeros[1].trim());
-                double resultado = CalculadoraLogica.restar(num1, num2); 
-                display.setText(String.valueOf(resultado));
-                return;
+            //ln
+            //log
+            else if (expresion.startsWith("log(") && expresion.endsWith(")")){
+                String numeroStr = expresion.substring(4,expresion.length()-1);
+                double numero = Double.parseDouble(numeroStr);
+                resultado = CalculadoraLogica.calcularLog(numero);
+                display.setText(String.valueOf(resultado));            
             }
-        }
-        //resta
-        //division
-        else if (expresion.contains("/")) {
-            String[] numeros = expresion.split("/"); 
-            if (numeros.length == 2) {
-                double num1 = Double.parseDouble(numeros[0].trim());
-                double num2 = Double.parseDouble(numeros[1].trim());
-                double resultado = CalculadoraLogica.dividir(num1, num2); 
-                display.setText(String.valueOf(resultado));
-                return;
+            //log
+            //detecta si es sin(x)
+            else if (expresion.startsWith("sin(") && expresion.endsWith(")")){
+                String numeroStr = expresion.substring(4,expresion.length()-1);
+                double numero = Double.parseDouble(numeroStr);
+                resultado = CalculadoraLogica.calcularSin(numero);
+                display.setText(String.valueOf(resultado));            
             }
-        }
-        //division
-        //multiplicar
-        else if (expresion.contains("*")) {
-            String[] numeros = expresion.split("\\*"); 
-            if (numeros.length == 2) {
-                double num1 = Double.parseDouble(numeros[0].trim());
-                double num2 = Double.parseDouble(numeros[1].trim());
-                double resultado = CalculadoraLogica.multiplicar(num1, num2); 
-                display.setText(String.valueOf(resultado));
-                return;
+            //seno
+
+            //cos
+            else if (expresion.startsWith("cos(") && expresion.endsWith(")")){
+                String numeroStr = expresion.substring(4,expresion.length()-1);
+                double numero = Double.parseDouble(numeroStr);
+                resultado = CalculadoraLogica.calcularCos(numero);
+                display.setText(String.valueOf(resultado));            
             }
-        }
-        //multiplicar
-        //raiz
-        else if (expresion.startsWith("√")){
-            String numeroStr = expresion.substring(1);
-            double numero = Double.parseDouble(numeroStr);
-            double resultado = CalculadoraLogica.raiz(numero);
-            display.setText(String.valueOf(resultado));            
-        }
-        //raiz
-        //porcentaje
-        else if (expresion.endsWith("%")){
-             String numeroStr = expresion.substring(0,expresion.length()-1);
-             double numero = Double.parseDouble(numeroStr);
-             double resultado = CalculadoraLogica.porcentaje(numero);
-             display.setText(String.valueOf(resultado ));
-         }
-        //porcentaje
-        
-        //potencia
-        else if (expresion.contains("^")){
-            String[] partes = expresion.split("\\^");
-            double base = Double.parseDouble(partes[0]);
-            double exponente = Double.parseDouble(partes[1]);
-            double resultado = CalculadoraLogica.potencia(base, exponente);
-            display.setText(String.valueOf(resultado));   
-        }
-        //potencia
-        //raiz3
-        else if (expresion.startsWith("\u00B3")){
-             String numeroStr = expresion.substring(2,expresion.length());
-             double numero = Double.parseDouble(numeroStr);
-             double resultado = CalculadoraLogica.calcularCuboR(numero);
-             display.setText(String.valueOf(resultado));
-         }
-        //raiz3
+            //cos
+            //tan
+            else if (expresion.startsWith("tan(") && expresion.endsWith(")")){
+                String numeroStr = expresion.substring(4,expresion.length()-1);
+                double numero = Double.parseDouble(numeroStr);
+                resultado = CalculadoraLogica.calcularTan(numero);
+                display.setText(String.valueOf(resultado));            
+            }
+            //tan
+
+            //!
+             else if (expresion.endsWith("!")){
+                String numeroStr = expresion.substring(0,expresion.length()-1);
+                int numero = Integer.parseInt(numeroStr);
+                resultado = CalculadoraLogica.calcularFac(numero);
+                display.setText(String.valueOf(resultado));            
+            }
+            //!
+            //E
+            else if (expresion.contains("E")){
+                 String numeroStrb = expresion.substring(0,expresion.indexOf("E"));
+                 String numeroStre = expresion.substring(expresion.indexOf("E")+1);
+                 double numerob = Double.parseDouble(numeroStrb);
+                 int numeroe = Integer.parseInt(numeroStre);
+                 resultado = CalculadoraLogica.calcularNotacionC(numerob, numeroe);
+                 display.setText(String.valueOf(resultado));
+             }
+            //E
+            //suma
+            else if (expresion.contains("+")) {
+                String[] numeros = expresion.split("\\+"); 
+                if (numeros.length == 2) {
+                    double num1 = Double.parseDouble(numeros[0].trim());
+                    double num2 = Double.parseDouble(numeros[1].trim());
+                    resultado = CalculadoraLogica.sumar(num1, num2); 
+                    display.setText(String.valueOf(resultado));
+                    return;
+                }
+            }
+            //suma
+            //resta
+            else if (expresion.contains("-")) {
+                String[] numeros = expresion.split("-"); 
+                if (numeros.length == 2) {
+                    double num1 = Double.parseDouble(numeros[0].trim());
+                    double num2 = Double.parseDouble(numeros[1].trim());
+                    resultado = CalculadoraLogica.restar(num1, num2); 
+                    display.setText(String.valueOf(resultado));
+                    return;
+                }
+            }
+            //resta
+            //division
+            else if (expresion.contains("/")) {
+                String[] numeros = expresion.split("/"); 
+                if (numeros.length == 2) {
+                    double num1 = Double.parseDouble(numeros[0].trim());
+                    double num2 = Double.parseDouble(numeros[1].trim());
+                    resultado = CalculadoraLogica.dividir(num1, num2); 
+                    display.setText(String.valueOf(resultado));
+                    return;
+                }
+            }
+            //division
+            //multiplicar
+            else if (expresion.contains("*")) {
+                String[] numeros = expresion.split("\\*"); 
+                if (numeros.length == 2) {
+                    double num1 = Double.parseDouble(numeros[0].trim());
+                    double num2 = Double.parseDouble(numeros[1].trim());
+                    resultado = CalculadoraLogica.multiplicar(num1, num2); 
+                    display.setText(String.valueOf(resultado));
+                    return;
+                }
+            }
+            //multiplicar
+            //raiz
+            else if (expresion.startsWith("√")){
+                String numeroStr = expresion.substring(1);
+                double numero = Double.parseDouble(numeroStr);
+                resultado = CalculadoraLogica.raiz(numero);
+                display.setText(String.valueOf(resultado));            
+            }
+            //raiz
+            //porcentaje
+            else if (expresion.endsWith("%")){
+                 String numeroStr = expresion.substring(0,expresion.length()-1);
+                 double numero = Double.parseDouble(numeroStr);
+                 resultado = CalculadoraLogica.porcentaje(numero);
+                 display.setText(String.valueOf(resultado ));
+             }
+            //porcentaje
+
+            //potencia
+            else if (expresion.contains("^")){
+                String[] partes = expresion.split("\\^");
+                double base = Double.parseDouble(partes[0]);
+                double exponente = Double.parseDouble(partes[1]);
+                resultado = CalculadoraLogica.potencia(base, exponente);
+                display.setText(String.valueOf(resultado));   
+            }
+            //potencia
+            //raiz3
+            else if (expresion.startsWith("\u00B3")){
+                 String numeroStr = expresion.substring(2,expresion.length());
+                 double numero = Double.parseDouble(numeroStr);
+                 resultado = CalculadoraLogica.calcularCuboR(numero);
+                 display.setText(String.valueOf(resultado));
+             }
+            //raiz3            
+            
         } catch (Exception e) {
         display.setText("Error");
         }
-        
         JOptionPane.showMessageDialog(null, "Se calculo el resultado");
-        // enviar resultado al display
+        // enviar resultado al display  
+        
+        BtnAns.addActionListener(e -> display.setText(display.getText() + resultado)); //hace que funcione ans
     }
+   
     
     public static void main(String[] args) {
         SwingUtilities.invokeLater(()->{
