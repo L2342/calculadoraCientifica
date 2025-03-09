@@ -143,7 +143,7 @@ public class CalculadoraCientifica extends JFrame{
             double resultado = CalculadoraLogica.calcularSin(numero);
             display.setText(String.valueOf(resultado));            
         }
-        //sin
+        //seno
         
         
 
