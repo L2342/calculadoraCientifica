@@ -18,4 +18,9 @@ public class CalculadoraLogica {
             
             return Math.cos(x); // coseno solo en radianes
         }
+        
+        public static double calcularTan(double x) {
+            
+            return Math.tan(x); // tangente solo en radianes
+        }
 }
